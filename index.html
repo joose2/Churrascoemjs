@@ -5,28 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividade churrasco </title>
-</head>
+    <link rel="stylesheet" href="styler.css">
+
+
 <body>
-    <h1>Atividade churrasco</h1>
-    <H2>😉Para obter novos dados ,recarregue a página !😎</H2>
+ <img src="foto do bife.avif" alt="">
+<h2>Churrasco</h2>
+<form id="churrascoForm">
+<label for="adultosComAlcool">Digite os adultos que consomem bebidas alcoólicas:</label>
+<input type="number" id="adultosComAlcool" required><br>
+<label for="adultosSemAlcool">Digite os adultos que não  consomem bebidas alcoólicas:</label>
+<input type="number" id="adultosSemAlcool" required><br>
+<label for="criancas">Digite a quantidade de Crianças:</label>
+<input type="number" id="criancas" required><br>
+<button type="submit">Somatoria </button>
+</form>
 
-    <h1 style="margin-bottom: 30px; font-size: 40px;">Calcular do churrasco</h1>
-    <div class="container">
-        <label for=""> Digite a quantidade de adultos que não bebe </label>
-        <input type="number" id="adultosquebebe">
-
-        <label for="">Digite a quantidade de adultos que não bebe </label>
-        <input type="number" id="adultosquenãobebe">
-
-        <label for="">Crianças na festa </label>
-        <input type="number" id="crianças">
-
-        <input type="submit" value="resultado">
-    </div>
+<h3>Resultado:</h3>
+<p id="resultado"></p>
 
 
 
+<script>
+const churrascoForm = document.getElementById('churrascoForm');
+const resultadoElement = document.getElementById('resultado');
 
-    <script src="index.js"></script>
-</body>
-</html>
+churrascoForm.addEventListener('submit', function (event) {
+
+event.preventDefault();
+
+
+
+
+const adultosComAlcool = parseInt(document.getElementById('adultosComAlcool').value);
+const adultosSemAlcool = parseInt(document.getElementById('adultosSemAlcool').value);
+const criancas = parseInt(document.getElementById('criancas').value);
+
+
+const adultos = adultosComAlcool + adultosSemAlcool;
+const pessoas = adultos + criancas;
+
+
+
+
+const carne = 0.4 * adultos + 0.2 * criancas;
+const acompanhamentos = 0.2 * pessoas;
+const cerveja = 2 * adultosComAlcool;
+const refrigerante = 0.5 * (adultosSemAlcool + criancas);
+const agua = 0.4 * pessoas;
+
+
+const resultadoText = `
+Carne: ${carne.toFixed(1)} Kg<br>
+Acompanhamentos: ${acompanhamentos.toFixed(1)} Kg<br>
+Cerveja: ${cerveja.toFixed(1)} L<br>
+Refrigerante: ${refrigerante.toFixed(1)} L<br>
+Água: ${agua.toFixed(1)} L
+`;
+
+
+
+resultadoElement.innerHTML = resultadoText;
+});
+</script>
